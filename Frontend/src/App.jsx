@@ -10,7 +10,7 @@ const App = () => {
   const [selectedTask, setSelectedTask] = useState(null); // { _id, title, content }
 
   let fetchData = async () => {
-    let res = await axios.get("http://localhost:3000/api/tasks");
+    let res = await axios.get("https://task-manager-vscs.onrender.com/api/tasks");
     console.log(res.data.tasks);
     setTasks(res.data.tasks);
   };
@@ -26,7 +26,7 @@ const App = () => {
     const content = e.target.elements.content.value;
 
     axios
-      .post("http://localhost:3000/api/tasks", { title, content })
+      .post("https://task-manager-vscs.onrender.com/api/tasks", { title, content })
       .then((res) => {
         console.log(res.data);
         fetchData();
@@ -35,7 +35,7 @@ const App = () => {
   }
 
   function deleteHandler(taskID) {
-    axios.delete(`http://localhost:3000/api/tasks/${taskID}`).then((res) => {
+    axios.delete(`https://task-manager-vscs.onrender.com/${taskID}`).then((res) => {
       console.log(res.data);
       fetchData();
     });
@@ -50,7 +50,7 @@ const App = () => {
   // Called by UpdateModal on submit — sends title + content to PATCH endpoint
   function updateHandler({ title, content }) {  //5⬅️
     axios
-      .patch(`http://localhost:3000/api/tasks/${selectedTask._id}`, {
+      .patch(`https://task-manager-vscs.onrender.com/${selectedTask._id}`, {
         title,
         content,
       })
